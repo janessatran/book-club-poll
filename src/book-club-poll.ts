@@ -49,6 +49,13 @@ export class BookClubPoll extends LitElement {
     .app-footer a {
       margin-left: 5px;
     }
+
+    .book-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
   `;
 
   render() {
@@ -57,10 +64,20 @@ export class BookClubPoll extends LitElement {
         <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
         <h1>${this.header}</h1>
 
-        <book-element
-          imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
-        >
-        </book-element>
+        <div class="book-grid">
+          <book-element
+            imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
+          >
+          </book-element>
+          <book-element
+            imageUrl="https://m.media-amazon.com/images/I/41uw2Gp4x4L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
+          >
+          </book-element>
+          <book-element
+            imageUrl="https://m.media-amazon.com/images/I/81ZfaZhmQ5L._AC_UF1000,1000_QL80_.jpg"
+          >
+          </book-element>
+        </div>
 
         <p>Edit <code>src/BookClubPoll.ts</code> and save to reload.</p>
         <a
