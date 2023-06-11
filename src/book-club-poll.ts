@@ -1,70 +1,31 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, CSSResultGroup } from "lit";
 import { property, customElement } from "lit/decorators.js";
 import "../src/components/Book/book.js";
-
-const logo = new URL("../../assets/open-wc-logo.svg", import.meta.url).href;
+import { bookClubPollStyles } from "./book-club-poll.css.js";
+import { DragulaModule } from "ng2-dragula";
 
 @customElement("book-club-poll")
 export class BookClubPoll extends LitElement {
   @property({ type: String }) header = "Book Club Poll";
+  @property({ type: String }) subText =
+    "Rank your preference for next month's read!";
 
-  static styles = css`
-    :host {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: calc(10px + 2vmin);
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-      background-color: var(--book-club-poll-background-color);
-    }
+  static get styles(): CSSResultGroup {
+    return bookClubPollStyles;
+  }
 
-    main {
-      flex-grow: 1;
-    }
-
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
-    }
-
-    .app-footer a {
-      margin-left: 5px;
-    }
-
-    .book-grid {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  `;
+  connectedCallback() {
+    super.connectedCallback();
+  }
 
   render() {
     return html`
       <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <div class="book-grid">
+        <div class="header-subtitle">
+          <h1>${this.header}</h1>
+          <h3 class="subtitle">${this.subText}</h3>
+        </div>
+        <div dragula class="book-grid drag-container">
           <book-element
             imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
           >
@@ -77,28 +38,12 @@ export class BookClubPoll extends LitElement {
             imageUrl="https://m.media-amazon.com/images/I/81ZfaZhmQ5L._AC_UF1000,1000_QL80_.jpg"
           >
           </book-element>
+          <book-element
+            imageUrl="https://images-us.bookshop.org/ingram/9780807012390.jpg?height=500&v=v2"
+          >
+          </book-element>
         </div>
-
-        <p>Edit <code>src/BookClubPoll.ts</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
       </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
     `;
   }
 }
