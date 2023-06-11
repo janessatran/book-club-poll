@@ -10,6 +10,7 @@
     <base href="/" />
 
     <link rel="stylesheet" href="./main.css?v2" />
+    <link rel="stylesheet" href="dragula.css" />
 
     <title>book-club-poll</title>
   </head>
@@ -42,12 +43,21 @@
     <script src="https://unpkg.com/dragula@3.7.2/dist/dragula.min.js"></script>
     <script type="module" src="./out-tsc/src/book-club-poll.js"></script>
 
-    <script>
+    <script type="text/javascript">
       if (dragula) {
-        const dragContainer = document.getElementById("drag-container");
-        debugger;
+        window.onload = function () {
+          const dragContainer = document.getElementById("drag-container");
+          const dragContainerNodes = Array.from(dragContainer.children);
 
-        dragula(dragContainer);
+          if (dragContainerNodes) {
+            console.log("Setting up dragula with children");
+            dragula(dragContainerNodes);
+          }
+          // dragula(
+          //  document.querySelector(".header-subtitle"),
+          //  document.querySelector(".book-grid")
+          // );
+        };
       }
     </script>
   </body>
