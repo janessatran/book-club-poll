@@ -9,20 +9,46 @@
     <meta name="Description" content="Put your description here." />
     <base href="/" />
 
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-      }
-    </style>
+    <link rel="stylesheet" href="./main.css?v2" />
+
     <title>book-club-poll</title>
   </head>
 
   <body>
-    <book-club-poll></book-club-poll>
-
+    <main>
+      <div class="header-subtitle">
+        <h1>Book Club Poll</h1>
+        <h3 class="subtitle">Vote your preference for next month's read!</h3>
+      </div>
+      <div class="book-grid" id="drag-container">
+        <book-element
+          imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
+        >
+        </book-element>
+        <book-element
+          imageUrl="https://m.media-amazon.com/images/I/41uw2Gp4x4L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
+        >
+        </book-element>
+        <book-element
+          imageUrl="https://m.media-amazon.com/images/I/81ZfaZhmQ5L._AC_UF1000,1000_QL80_.jpg"
+        >
+        </book-element>
+        <book-element
+          imageUrl="https://images-us.bookshop.org/ingram/9780807012390.jpg?height=500&v=v2"
+        >
+        </book-element>
+      </div>
+    </main>
+    <script src="https://unpkg.com/dragula@3.7.2/dist/dragula.min.js"></script>
     <script type="module" src="./out-tsc/src/book-club-poll.js"></script>
+
+    <script>
+      if (dragula) {
+        const dragContainer = document.getElementById("drag-container");
+        debugger;
+
+        dragula(dragContainer);
+      }
+    </script>
   </body>
 </html>
