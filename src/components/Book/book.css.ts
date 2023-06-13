@@ -11,7 +11,9 @@ export const bookStyles = css`
   }
 
   .book img {
-    pointer-events: none;
+    /* pointer-events: none; */
+    cursor: grab;
+    user-select: none;
     height: 100%;
   }
 `;

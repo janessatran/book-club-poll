@@ -15,6 +15,10 @@ class Book extends LitElement {
     return bookStyles;
   }
 
+  private handleDrag() {
+    console.log("dragged");
+  }
+
   render() {
     // Return the template using the html template tag. lit-html will parse the template and
     // create the DOM elements

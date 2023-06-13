@@ -10,8 +10,13 @@
     <base href="/" />
 
     <link rel="stylesheet" href="./main.css?v2" />
-    <link rel="stylesheet" href="dragula.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.css"
+      integrity="sha512-49xW99xceMN8dDoWaoCaXvuVMjnUctHv/jOlZxzFSMJYhqDZmSF/UnM6pLJjQu0YEBLSdO1DP0er6rUdm8/VqA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>book-club-poll</title>
   </head>
 
@@ -40,23 +45,19 @@
         </book-element>
       </div>
     </main>
-    <script src="https://unpkg.com/dragula@3.7.2/dist/dragula.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js"
+      integrity="sha512-MrA7WH8h42LMq8GWxQGmWjrtalBjrfIzCQ+i2EZA26cZ7OBiBd/Uct5S3NP9IBqKx5b+MMNH1PhzTsk6J9nPQQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script type="module" src="./out-tsc/src/book-club-poll.js"></script>
 
     <script type="text/javascript">
       if (dragula) {
         window.onload = function () {
           const dragContainer = document.getElementById("drag-container");
-          const dragContainerNodes = Array.from(dragContainer.children);
-
-          if (dragContainerNodes) {
-            console.log("Setting up dragula with children");
-            dragula(dragContainerNodes);
-          }
-          // dragula(
-          //  document.querySelector(".header-subtitle"),
-          //  document.querySelector(".book-grid")
-          // );
+          dragula([dragContainer]);
         };
       }
     </script>
