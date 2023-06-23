@@ -50,7 +50,6 @@ main {
 }
 
 #drag-container {
-  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -68,8 +67,12 @@ main {
   gap: 1rem;
   justify-content: space-evenly;
   margin-block-start: 3rem;
-  margin-inline-start: 3rem;
   width: 100%;
+}
+
+.vote-button-container {
+  text-align: center;
+  margin-block-start: 2rem;
 }
 
 @media (max-width: 641px) {

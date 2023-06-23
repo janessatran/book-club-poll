@@ -21,30 +21,38 @@
   </head>
 
   <body>
-    <main>
-      <div class="header-subtitle">
-        <h1>Book Club Poll</h1>
-        <h3 class="subtitle">Vote your preference for next month's read!</h3>
-      </div>
-      <div class="book-grid" id="drag-container">
-        <book-element
-          imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
-        >
-        </book-element>
-        <book-element
-          imageUrl="https://m.media-amazon.com/images/I/41uw2Gp4x4L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
-        >
-        </book-element>
-        <book-element
-          imageUrl="https://m.media-amazon.com/images/I/81ZfaZhmQ5L._AC_UF1000,1000_QL80_.jpg"
-        >
-        </book-element>
-        <book-element
-          imageUrl="https://images-us.bookshop.org/ingram/9780807012390.jpg?height=500&v=v2"
-        >
-        </book-element>
-      </div>
-    </main>
+    <sp-theme scale="large" color="dark">
+      <main>
+        <div class="header-subtitle">
+          <h1>Book Club Poll</h1>
+          <h3 class="subtitle">Vote your preference for next month's read!</h3>
+        </div>
+        <div class="content">
+          <div class="book-grid" id="drag-container">
+            <book-element
+              imageUrl="https://m.media-amazon.com/images/I/81tCtHFtOgL._AC_UF1000,1000_QL80_.jpg"
+            >
+            </book-element>
+            <book-element
+              imageUrl="https://m.media-amazon.com/images/I/41uw2Gp4x4L._SY291_BO1,204,203,200_QL40_FMwebp_.jpg"
+            >
+            </book-element>
+            <book-element
+              imageUrl="https://m.media-amazon.com/images/I/81ZfaZhmQ5L._AC_UF1000,1000_QL80_.jpg"
+            >
+            </book-element>
+            <book-element
+              imageUrl="https://images-us.bookshop.org/ingram/9780807012390.jpg?height=500&v=v2"
+            >
+            </book-element>
+          </div>
+          <div class="vote-button-container">
+            <sp-button size="l">vote</sp-button>
+          </div>
+        </div>
+      </main>
+    </sp-theme>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.6.6/dragula.min.js"
       integrity="sha512-MrA7WH8h42LMq8GWxQGmWjrtalBjrfIzCQ+i2EZA26cZ7OBiBd/Uct5S3NP9IBqKx5b+MMNH1PhzTsk6J9nPQQ=="
@@ -52,7 +60,11 @@
       referrerpolicy="no-referrer"
     ></script>
     <script type="module" src="./out-tsc/src/book-club-poll.js"></script>
-
+    <script
+      src="https://jspm.dev/@spectrum-web-components/bundle/elements.js"
+      type="module"
+      async
+    ></script>
     <script type="text/javascript">
       if (dragula) {
         window.onload = function () {
