@@ -16,4 +16,8 @@ export const bookStyles = css`
     user-select: none;
     height: 100%;
   }
+
+  label {
+    display: none; /* TODO unhide this once i figure out how it should look */
+  }
 `;
