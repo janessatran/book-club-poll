@@ -44,6 +44,10 @@ export class VoteController implements ReactiveController {
     this.host.requestUpdate();
   };
 
+  hostUpdated() {
+    this.results = ""; // clear results
+  }
+
   hostConnected() {
     window.addEventListener(VOTE_SUBMITTED_EVENT, this._handleVote);
   }

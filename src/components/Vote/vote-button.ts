@@ -40,7 +40,6 @@ class VoteButton extends LitElement {
   render() {
     if (this.vote.results) {
       alert(this.vote.results);
-      this.vote.results = ""; // todo - there's probably a better way to clear this data once it gets displayed
     }
 
     return html`<button
