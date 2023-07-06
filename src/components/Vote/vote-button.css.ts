@@ -28,9 +28,10 @@ export const buttonStyles = css`
 
   .button:hover,
   .button:active {
-    background-color: #ffffff;
+    background-color: #fff;
     background-position: 0 0;
     color: #ff4742;
+    border: 1px solid white;
   }
 
   .button:active {
