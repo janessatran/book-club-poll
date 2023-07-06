@@ -49,25 +49,11 @@ main {
   margin: auto 1.25rem;
 }
 
-#drag-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  font-size: calc(10px + 2vmin);
-  color: #1a2b42;
-  text-align: center;
-}
-
 .book-grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   gap: 1rem;
-  justify-content: space-evenly;
-  margin-block-start: 3rem;
-  width: 100%;
+  margin-block: 6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .vote-button-container {
@@ -75,10 +61,55 @@ main {
   margin-block-start: 2rem;
 }
 
+/* ranking labels */
+book-element {
+  padding: 1rem;
+  position: relative;
+}
+
+book-element:first-child::after {
+  content: "1";
+}
+
+book-element:nth-child(2n)::after {
+  content: "2";
+}
+
+book-element:nth-child(3n)::after {
+  content: "3";
+}
+
+book-element:nth-child(4n)::after {
+  content: "4";
+}
+
+book-element::after {
+  font-size: 3rem;
+  position: absolute;
+  bottom: -4rem;
+  left: 45%;
+  font-family: futura-pt, futura-heavy, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  width: 100%;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.1;
+  color: #2c7c94;
+  font-weight: 900;
+}
+
+/* ranking labels */
+
 @media (max-width: 641px) {
   .book-grid {
     margin-block-start: 0;
     margin-inline-start: 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 0.5rem;
+  }
+
+  book-element::after {
+    left: 40%;
   }
 }
 
