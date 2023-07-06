@@ -99,28 +99,53 @@ book-element::after {
   font-weight: 900;
 }
 
-/* ranking labels */
+/* ranking labels end */
 
 @media (max-width: 641px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+
+  html,
+  body {
+    height: unset;
+  }
+
+  main {
+    flex-direction: column;
+    align-items: stretch;
+    width: -webkit-fill-available;
+  }
+
   .book-grid {
     margin-block-start: 0;
     margin-inline-start: 0;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem 0.5rem;
+    gap: 2rem 0.5rem;
+    margin-block-end: 3rem;
+  }
+
+  book-element {
+    margin: auto;
   }
 
   book-element::after {
-    left: 40%;
-  }
-}
-
-@media (max-width: 641px) {
-  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  main {
-    flex-direction: column;
+    left: 45%;
+    font-size: 2rem;
+    bottom: -2rem;
   }
 
   .header-subtitle {
     width: 100%;
+    text-align: center;
+    margin: auto 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    text-align: center;
+    margin-block-start: 1rem;
   }
 }

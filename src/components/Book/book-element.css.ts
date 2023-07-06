@@ -20,4 +20,11 @@ export const bookStyles = css`
   label {
     display: none; /* TODO unhide this once i figure out how it should look */
   }
+
+  @media (max-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    .book {
+      height: 200px;
+    }
+  }
 `;
