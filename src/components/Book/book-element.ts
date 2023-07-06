@@ -1,7 +1,11 @@
 import { LitElement, html, css, CSSResult, CSSResultGroup } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { bookStyles } from "./book-element.css";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { BookModal } from "../BookModal/book-modal";
+import "../BookModal/book-modal.js";
+import { SharedResource } from "../../shared-resource";
+// import { bookModal } from "../BookDetails/book-modal.css";
 
 export const BOOK_ELEMENT_CLICK_EVENT = "book-element-clicked";
 
@@ -20,21 +24,33 @@ class BookElement extends LitElement {
   @property()
   bookTitle: string | undefined;
 
+  @query("book-modal")
+  bookModalElement: BookModal | undefined;
+
+  private sharedResourceBroadcaster: SharedResource;
+
   static get styles(): CSSResultGroup {
     return bookStyles;
   }
 
-  _handleClick(event: Event) {
-    // open book details in a modal
-    console.log("Distacp");
-    const bookClickedEvent = new CustomEvent(BOOK_ELEMENT_CLICK_EVENT, {
-      detail: {
-        bookId: this.bookId,
-        bookTitle: this.bookTitle,
-      },
-    });
+  constructor() {
+    super();
+    this.sharedResourceBroadcaster = new SharedResource(
+      BOOK_ELEMENT_CLICK_EVENT
+    );
+  }
 
-    window.dispatchEvent(bookClickedEvent);
+  connectedCallback() {
+    super.connectedCallback();
+  }
+
+  async _handleClick(event: Event) {
+    await this.updateComplete; // wait for book-modal to be rendered to DOM
+
+    if (this.bookModalElement) {
+      this.sharedResourceBroadcaster.addReceiver(this.bookModalElement);
+    }
+    this.sharedResourceBroadcaster.notify();
   }
 
   render() {
@@ -47,6 +63,7 @@ class BookElement extends LitElement {
           <label id="book-title">${ifDefined(this.bookTitle)}</label>
         </div>
       </div>
+      <book-modal></book-modal>
     `;
   }
 }
