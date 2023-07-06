@@ -1,11 +1,14 @@
-import { LitElement, html, css, CSSResult, CSSResultGroup } from "lit";
+import {
+  CSSResultGroup,
+  LitElement,
+  PropertyValueMap,
+  PropertyValues,
+  html,
+} from "lit";
 import { property } from "lit/decorators.js";
-import { bookStyles } from "./book-element.css";
-import { ifDefined } from "lit/directives/if-defined.js";
+import { bookModalStyles } from "./book-modal.css";
 
-export const BOOK_ELEMENT_CLICK_EVENT = "book-element-clicked";
-
-class BookElement extends LitElement {
+export class BookModal extends LitElement {
   // The render callback renders your element's template. This should be a pure function,
   // it should always return the same template given the same properties. It should not perform
   // any side effects such as setting properties or manipulating the DOM. See the updated
@@ -20,31 +23,33 @@ class BookElement extends LitElement {
   @property()
   bookTitle: string | undefined;
 
+  @property()
+  bookDescript: string | undefined;
+
+  @property({ type: Boolean })
+  open: boolean = false;
+
   static get styles(): CSSResultGroup {
-    return bookStyles;
+    return bookModalStyles;
   }
 
-  _handleClick(event: Event) {
-    // open book details in a modal
-    console.log("Distacp");
-    const bookClickedEvent = new CustomEvent(BOOK_ELEMENT_CLICK_EVENT, {
-      detail: {
-        bookId: this.bookId,
-        bookTitle: this.bookTitle,
-      },
-    });
-
-    window.dispatchEvent(bookClickedEvent);
+  _handleClose() {
+    this.open = false;
   }
 
   render() {
     // Return the template using the html template tag. lit-html will parse the template and
     // create the DOM elements
     return html`
-      <div class="book-wrapper" @click=${this._handleClick}>
-        <div class="book" id=${ifDefined(this.bookId)}>
-          <img src=${ifDefined(this.imageUrl)} />
-          <label id="book-title">${ifDefined(this.bookTitle)}</label>
+      <div
+        id="myModal"
+        class="modal"
+        style="display: ${this.open ? "block" : "none"}"
+      >
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close" @click=${this._handleClose}>&times;</span>
+          <p>This is where the book details are going to go...</p>
         </div>
       </div>
     `;
@@ -53,10 +58,10 @@ class BookElement extends LitElement {
 
 // Register your element to custom elements registry, pass it a tag name and your class definition
 // The element name must always contain at least one dash
-customElements.define("book-element", BookElement);
+customElements.define("book-modal", BookModal);
 
 declare global {
   interface HTMLElementTagNameMap {
-    "book-element": BookElement;
+    "book-modal": BookModal;
   }
 }
