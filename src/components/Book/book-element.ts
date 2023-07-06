@@ -1,11 +1,10 @@
-import { LitElement, html, css, CSSResult, CSSResultGroup } from "lit";
+import { CSSResultGroup, LitElement, html } from "lit";
 import { property, query } from "lit/decorators.js";
-import { bookStyles } from "./book-element.css";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { SharedResource } from "../../shared-resource";
 import { BookModal } from "../BookModal/book-modal";
 import "../BookModal/book-modal.js";
-import { SharedResource } from "../../shared-resource";
-// import { bookModal } from "../BookDetails/book-modal.css";
+import { bookStyles } from "./book-element.css";
 
 export const BOOK_ELEMENT_CLICK_EVENT = "book-element-clicked";
 

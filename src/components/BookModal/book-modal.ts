@@ -1,13 +1,7 @@
-import {
-  CSSResultGroup,
-  LitElement,
-  PropertyValueMap,
-  PropertyValues,
-  html,
-} from "lit";
+import { CSSResultGroup, LitElement, html } from "lit";
 import { property } from "lit/decorators.js";
-import { bookModalStyles } from "./book-modal.css";
 import { BOOK_ELEMENT_CLICK_EVENT } from "../Book/book-element";
+import { bookModalStyles } from "./book-modal.css";
 
 export class BookModal extends LitElement {
   @property()
