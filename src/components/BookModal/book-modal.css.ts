@@ -17,15 +17,30 @@ export const bookModalStyles = css`
   .book-title {
     margin-block-start: 3rem;
     font-size: 2rem;
+    font-weight: 900;
+    color: rgb(255, 71, 66);
+    background-color: transparent;
+    -webkit-text-stroke: 0.03em rgb(196, 56, 51);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .left-hand-side {
+    margin: auto 3rem;
   }
 
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    background-color: #f3d8d8;
     margin: 5% auto; /* 5% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    font-family: futura-pt, futura-heavy, "Helvetica Neue", Helvetica, Arial,
+      sans-serif;
+    line-height: 1.2;
   }
 
   .book-content {
@@ -33,12 +48,12 @@ export const bookModalStyles = css`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 2rem;
   }
 
   /* The Close Button */
   .close {
-    color: #aaa;
+    color: rgb(255, 71, 66);
     float: right;
     font-size: 28px;
     font-weight: bold;

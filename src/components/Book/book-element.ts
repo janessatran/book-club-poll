@@ -1,7 +1,7 @@
 import { CSSResultGroup, LitElement, html } from "lit";
 import { property, query } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { SharedResource } from "../../shared-resource";
+import { SharedResource } from "../../utils/shared-resource.js";
 import { BookModal } from "../BookModal/book-modal";
 import "../BookModal/book-modal.js";
 import { bookStyles } from "./book-element.css";
