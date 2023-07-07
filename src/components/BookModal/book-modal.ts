@@ -55,8 +55,20 @@ export class BookModal extends LitElement {
       >
         <div class="modal-content">
           <span class="close" @click=${this._handleClose}>&times;</span>
-          <p>This is where the book details are going to go...</p>
-          ${this.bookTitle} <img src=${ifDefined(this.bookImageUrl)} />
+          <div class="book-content">
+            <a
+              class="book-container"
+              href=""
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <div class="book">
+                <img alt="" src=${ifDefined(this.bookImageUrl)} />
+              </div>
+            </a>
+            <p class="book-title">${this.bookTitle}</p>
+            <p>This is where the book details are going to go...</p>
+          </div>
         </div>
       </div>
     `;
