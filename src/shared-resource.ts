@@ -18,10 +18,10 @@ export class SharedResource {
     this.receivers.push.apply(this.receivers, receivers);
   }
 
-  notify() {
+  notify(eventDetails?: CustomEventInit<unknown>) {
     const self = this;
     this.receivers.forEach((receiver) => {
-      return receiver.dispatchEvent(new CustomEvent(self.event));
+      return receiver.dispatchEvent(new CustomEvent(self.event, eventDetails));
     });
   }
 }

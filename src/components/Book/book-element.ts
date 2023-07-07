@@ -45,11 +45,18 @@ class BookElement extends LitElement {
 
   async _handleClick(event: Event) {
     await this.updateComplete; // wait for book-modal to be rendered to DOM
+    const bookClickEventDetails = {
+      detail: {
+        bookTitle: this.bookTitle,
+        bookId: this.bookId,
+        bookImage: this.imageUrl,
+      },
+    };
 
     if (this.bookModalElement) {
       this.sharedResourceBroadcaster.addReceiver(this.bookModalElement);
     }
-    this.sharedResourceBroadcaster.notify();
+    this.sharedResourceBroadcaster.notify(bookClickEventDetails);
   }
 
   render() {
