@@ -35,8 +35,11 @@ export class BookService {
       .then((res) => res.json())
       .then((res: BookSearchResult) => {
         if (res.items && res.items.length > 1) {
-          const first = res.items[0];
-          const bookInfo = first.volumeInfo as Book;
+          const firstBook = res.items[0];
+          const bookId = firstBook.id;
+          const imageUrl = `https://books.google.com/books/publisher/content/images/frontcover/${bookId}?fife=w400-h600&source=gbs_api`;
+          const bookInfo = firstBook.volumeInfo as Book;
+          bookInfo.imageLinks.thumbnail = imageUrl;
           return bookInfo;
         }
       });

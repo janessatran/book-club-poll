@@ -1,3 +1,6 @@
+import { Author } from "./Author";
+import { Image } from "./Image";
+
 export interface Book {
   title: string;
   authors: Author[];
@@ -10,13 +13,4 @@ export interface Book {
   previewLink: string;
   infoLink: string;
   imageLinks: Image;
-}
-
-export interface Author {
-  name: string;
-}
-
-export interface Image {
-  smallThumbnail: string;
-  thumbnail: string;
 }

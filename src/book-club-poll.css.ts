@@ -2,7 +2,6 @@ import { css } from "lit-element";
 
 export const bookClubPollStyles = css`
   :host {
-    min-height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: center;

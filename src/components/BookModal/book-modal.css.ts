@@ -15,7 +15,7 @@ export const bookModalStyles = css`
   }
 
   .book-title {
-    margin-block-start: 3rem;
+    border-bottom: 2px solid black;
     font-size: 2rem;
     font-weight: 900;
     color: rgb(255, 71, 66);
@@ -25,16 +25,35 @@ export const bookModalStyles = css`
     text-align: center;
   }
 
+  .book-author {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .book-snippet {
+    font-family: monospace;
+    padding-inline: 1.2rem;
+    margin-block-start: 2rem;
+    max-height: 300px;
+    overflow-y: scroll;
+    pointer-events: auto;
+  }
+
   .left-hand-side {
     margin: auto 3rem;
   }
 
+  .right-hand-side {
+    padding: 1.5rem;
+    border: 2px solid black;
+  }
+
   /* Modal Content/Box */
   .modal-content {
-    background-color: #f3d8d8;
-    margin: 5% auto; /* 5% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
+    background-color: #e7dcc8;
+    border: 2px solid black;
+    margin: 2% auto; /* 5% from the top and centered */
+    padding: 3rem;
     width: 70%;
     display: flex;
     flex-direction: row;
@@ -57,6 +76,10 @@ export const bookModalStyles = css`
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-block-start: -2.5rem;
+    margin-inline-end: -1.5rem;
+    margin-inline-start: 1rem;
+    pointer-events: auto !important;
   }
 
   .close:hover,
@@ -161,12 +184,24 @@ export const bookModalStyles = css`
     transform: translateZ(-25px);
     background-color: #01060f;
     border-radius: 0 2px 2px 0;
-    box-shadow: -10px 0 50px 10px #666;
+    box-shadow: -10px 0 50px 10px #2c2c2c;
   }
 
   @media (max-width: 641px) {
     .modal-content {
       width: 80%;
+      flex-direction: column-reverse;
+      padding: 2rem;
+    }
+
+    .book-title {
+      font-size: 1rem;
+    }
+
+    .close {
+      margin-inline-start: calc(100% - 10%);
+      margin-inline-start: calc(100%);
+      margin-block: -1.5rem 1rem;
     }
   }
 `;

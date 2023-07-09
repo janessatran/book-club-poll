@@ -5,6 +5,8 @@ import { SharedResource } from "../../utils/shared-resource.js";
 import { BookModal } from "../BookModal/book-modal";
 import "../BookModal/book-modal.js";
 import { bookStyles } from "./book-element.css";
+import { BookService } from "../../services/book-service.js";
+import { Author } from "../../models/Author.js";
 
 export const BOOK_ELEMENT_CLICK_EVENT = "book-element-clicked";
 
@@ -21,12 +23,20 @@ class BookElement extends LitElement {
   bookId: string | undefined;
 
   @property()
-  bookTitle: string | undefined;
+  bookTitle: string;
 
   @query("book-modal")
   bookModalElement: BookModal | undefined;
 
   private sharedResourceBroadcaster: SharedResource;
+
+  private bookService?: BookService;
+
+  authors: Author[] | undefined;
+
+  description: string | undefined;
+
+  pageCount: string | undefined;
 
   static get styles(): CSSResultGroup {
     return bookStyles;
@@ -37,10 +47,22 @@ class BookElement extends LitElement {
     this.sharedResourceBroadcaster = new SharedResource(
       BOOK_ELEMENT_CLICK_EVENT
     );
+    this.bookTitle = "Where the Deer and the Antelope Play"; // default book if not specified
+    this.bookService = new BookService("TODO_SET_API_KEY");
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     super.connectedCallback();
+
+    const result = await this.bookService?.getBookByTitle(this.bookTitle);
+    this.authors = result?.authors;
+    this.description = result?.description;
+    this.imageUrl = result?.imageLinks.thumbnail;
+    this.pageCount = result?.pageCount;
+    if (result?.pageCount) {
+      const pageCount = parseInt(result.pageCount);
+      if (pageCount) this.pageCount;
+    }
   }
 
   async _handleClick(event: Event) {
@@ -49,7 +71,10 @@ class BookElement extends LitElement {
       detail: {
         bookTitle: this.bookTitle,
         bookId: this.bookId,
-        bookImage: this.imageUrl,
+        bookImageUrl: this.imageUrl,
+        authors: this.authors,
+        pageCount: this.pageCount,
+        description: this.description,
       },
     };
 

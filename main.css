@@ -3,9 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #feebc8;
-  height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 h1,
@@ -19,13 +17,13 @@ h3 {
   line-height: 1.1;
 }
 
-h1 {
+h1.title {
   margin-block-start: 1rem;
   font-weight: 900;
   font-size: 4rem;
   color: #f4ea84;
   background-color: transparent;
-  -webkit-text-stroke: 0.03em #487391;
+  -webkit-text-stroke: 3px black;
   text-transform: uppercase;
 }
 
@@ -34,6 +32,7 @@ main {
   align-items: center;
   justify-content: center;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .subtitle {
@@ -119,11 +118,10 @@ book-element::after {
   }
 
   .book-grid {
-    margin-block-start: 0;
+    margin-block: 3rem;
     margin-inline-start: 0;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem 0.5rem;
-    margin-block-end: 3rem;
   }
 
   book-element {

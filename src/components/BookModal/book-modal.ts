@@ -1,12 +1,15 @@
 import { CSSResultGroup, LitElement, html } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { BOOK_ELEMENT_CLICK_EVENT } from "../Book/book-element";
 import { bookModalStyles } from "./book-modal.css";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { BookService } from "../../services/book-service";
-import { Author } from "../../models/Book";
+import { Author } from "../../models/Author";
 
 export class BookModal extends LitElement {
+  @query("book-modal")
+  bookModalEle: BookModal | undefined;
+
   @property()
   bookImageUrl: string | undefined;
 
@@ -28,15 +31,12 @@ export class BookModal extends LitElement {
 
   pageCount: string | undefined;
 
-  bookService?: BookService;
-
   static get styles(): CSSResultGroup {
     return bookModalStyles;
   }
 
   constructor() {
     super();
-    this.bookService = new BookService("TODO_SET_API_KEY");
   }
 
   connectedCallback(): void {
@@ -51,22 +51,31 @@ export class BookModal extends LitElement {
 
   async _handleOpen(event: Event) {
     const e = event as CustomEvent;
-    const { bookTitle, bookImage } = e.detail;
-    const result = await this.bookService?.getBookByTitle(bookTitle);
-    this.authors = result?.authors;
-    this.description = result?.description;
-    this.bookImageUrl = result?.imageLinks.thumbnail;
-    this.bookTitle = result?.title;
-    this.pageCount = result?.pageCount;
-    if (result?.pageCount) {
-      const pageCount = parseInt(result.pageCount);
-      if (pageCount) this.pageCount;
-    }
+    const { authors, description, bookImageUrl, bookTitle, pageCount } =
+      e.detail;
+    this.authors = authors;
+    this.description = description;
+    this.bookImageUrl = bookImageUrl;
+    this.bookTitle = bookTitle;
+    this.pageCount = pageCount;
     this.open = true;
+    this.togglePointerEventsOnBackground();
   }
 
   _handleClose() {
     this.open = false;
+    this.togglePointerEventsOnBackground();
+  }
+
+  togglePointerEventsOnBackground() {
+    const dragContainer = document.getElementById("drag-container");
+    if (dragContainer) {
+      if (this.open) {
+        dragContainer.style.pointerEvents = "none";
+      } else {
+        dragContainer.style.pointerEvents = "unset";
+      }
+    }
   }
 
   render() {
@@ -93,11 +102,10 @@ export class BookModal extends LitElement {
           </div>
           <div class="right-hand-side">
             <p class="book-title">${this.bookTitle}</p>
-            <span class="book-author"
-              >by ${this.authors} |
-              ${this.pageCount ? this.pageCount : "Unknown number of"}
-              pages</span
-            >
+            <p class="book-author">
+              by ${this.authors} |
+              ${this.pageCount ? this.pageCount : "Unknown number of"} pages
+            </p>
             <p class="book-snippet">${this.description}</p>
           </div>
           <span class="close" @click=${this._handleClose}>&times;</span>
