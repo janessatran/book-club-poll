@@ -51,7 +51,6 @@ export const bookModalStyles = css`
   /* Modal Content/Box */
   .modal-content {
     background-color: #e7dcc8;
-    border: 2px solid black;
     margin: 2% auto; /* 5% from the top and centered */
     padding: 3rem;
     width: 70%;

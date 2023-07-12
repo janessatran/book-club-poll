@@ -31,8 +31,8 @@ export class VoteController implements ReactiveController {
         const book = rankedBooks[i];
         if (book && "id" in book && "bookTitle" in book) {
           temp.push(book.id);
-          this.results += `Choice ${i}: ${book.bookTitle} ${
-            i === rankedBooks.length - 1 ? "." : ", "
+          this.results += `Choice ${i}: ${book.bookTitle}${
+            i === rankedBooks.length - 1 ? "." : ", \n"
           }`;
         }
       }
